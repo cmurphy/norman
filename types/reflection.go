@@ -393,6 +393,8 @@ func applyTag(structField *reflect.StructField, field *Field) error {
 			field.ValidChars = value
 		case "invalidChars":
 			field.InvalidChars = value
+		case "noomitempty":
+			field.NoOmitEmpty = true
 		default:
 			return fmt.Errorf("invalid tag %s on field %s", key, structField.Name)
 		}

@@ -30,7 +30,7 @@ type {{.schema.CodeName}} struct {
     types.Resource
 {{- end}}
     {{- range $key, $value := .structFields}}
-        {{$key}} {{$value.Type}} %BACK%json:"{{$value.Name}},omitempty" yaml:"{{$value.Name}},omitempty"%BACK%
+        {{$key}} {{$value.Type}} %BACK%json:"{{$value.Name}}{{if not $value.NoOmitEmpty }},omitempty{{end}}" yaml:"{{$value.Name}}{{if not $value.NoOmitEmpty}},omitempty{{end}}"%BACK%
     {{- end}}
 }
 

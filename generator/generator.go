@@ -30,8 +30,9 @@ var (
 )
 
 type fieldInfo struct {
-	Name string
-	Type string
+	Name        string
+	Type        string
+	NoOmitEmpty bool
 }
 
 func getGoType(field types.Field, schema *types.Schema, schemas *types.Schemas) string {
@@ -110,8 +111,9 @@ func getTypeMap(schema *types.Schema, schemas *types.Schemas) map[string]fieldIn
 			continue
 		}
 		result[field.CodeName] = fieldInfo{
-			Name: name,
-			Type: getGoType(field, schema, schemas),
+			Name:        name,
+			Type:        getGoType(field, schema, schemas),
+			NoOmitEmpty: field.NoOmitEmpty,
 		}
 	}
 	return result
